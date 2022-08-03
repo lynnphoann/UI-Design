@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iroiro/ColorCollection.dart';
 
 class designTextField extends StatelessWidget {
   final String textFieldName;
@@ -17,9 +18,9 @@ class designTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: BoxDecoration(
-          color: Color.fromARGB(162, 232, 232, 232),
+          color: const Color.fromARGB(162, 232, 232, 232),
           borderRadius: BorderRadius.circular(10)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -28,12 +29,12 @@ class designTextField extends StatelessWidget {
           Text(
             textFieldName,
             style: TextStyle(
-                color: Color.fromARGB(177, 37, 119, 107),
+                color: textFieldColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
                 letterSpacing: 1),
           ),
-          SizedBox(
+          const SizedBox(
             height: 7,
           ),
           Row(
@@ -41,10 +42,10 @@ class designTextField extends StatelessWidget {
             children: [
               Icon(
                 textFieldIcon,
-                color: Color.fromARGB(255, 255, 190, 93),
+                color: textFiedlIconColor,
                 size: 24,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               SizedBox(
@@ -53,12 +54,12 @@ class designTextField extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration.collapsed(
                     hintText: hintName,
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       fontSize: 18,
                       color: Color.fromARGB(198, 168, 168, 168),
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Color.fromARGB(184, 0, 0, 0),
                       fontWeight: FontWeight.bold,
                       fontSize: 18),
