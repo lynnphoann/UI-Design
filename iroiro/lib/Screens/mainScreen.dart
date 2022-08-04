@@ -37,18 +37,19 @@ class _MainScreenState extends State<MainScreen> {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Center(
-                  child: SizedBox(
-                height: 30,
-                width: 70,
-                child: Divider(
-                  color: Colors.grey,
-                  height: 8,
-                  indent: 10,
-                  endIndent: 10,
-                  thickness: 2,
+              Center(
+                child: SizedBox(
+                  height: 30,
+                  width: 70,
+                  child: Divider(
+                    color: Colors.grey,
+                    height: 2,
+                    indent: 2,
+                    endIndent: 2,
+                    thickness: 3,
+                  ),
                 ),
-              )),
+              ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 // color: loginArrowColor,
@@ -115,14 +116,14 @@ class _MainScreenState extends State<MainScreen> {
             adminIDController: adminIDController);
       } else if (screenKey == 2) {
         return AgentPages(
-          agentPageTitle: "To Agent",
+          agentPageTitle: "To Agent Login",
           nameController: nameController,
           passwordController: passwordController,
           adminIDController: adminIDController,
         );
       } else if (screenKey == 3) {
         return AgentPages(
-            agentPageTitle: "To Member",
+            agentPageTitle: "To Member Login",
             nameController: nameController,
             passwordController: passwordController,
             adminIDController: adminIDController);
@@ -136,11 +137,11 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: selectPage(screenKey),
       bottomNavigationBar: GestureDetector(
-        onTap: () => AgentPages(
-            agentPageTitle: "To SuperAgent Login",
-            nameController: nameController,
-            passwordController: passwordController,
-            adminIDController: adminIDController),
+        onTap: () {
+          setState(() {
+            screenKey = 1;
+          });
+        },
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 20),

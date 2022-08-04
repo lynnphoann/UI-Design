@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:iroiro/ColorCollection.dart';
-
 class AgentDesignTextField extends StatelessWidget {
   final String textFieldName;
   final IconData textFieldIcon;

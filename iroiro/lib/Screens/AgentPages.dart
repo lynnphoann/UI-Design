@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iroiro/ColorCollection.dart';
 import 'package:iroiro/widget/agentDesignTextField.dart';
-import 'package:iroiro/widget/designTextField.dart';
 
 class AgentPages extends StatelessWidget {
   final String agentPageTitle;
@@ -59,7 +58,7 @@ class AgentPages extends StatelessWidget {
               ),
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.62,
+              height: MediaQuery.of(context).size.height * 0.625,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
               child: Column(
                 children: [
