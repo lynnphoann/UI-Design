@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:iroiro/ColorCollection.dart';
 import 'package:iroiro/widget/designTextField.dart';
 
-class LoginPage extends StatelessWidget {
+class AdminPage extends StatelessWidget {
   final TextEditingController nameController;
   final TextEditingController passwordController;
-  const LoginPage({
+  const AdminPage({
     Key? key,
     required this.nameController,
     required this.passwordController,
@@ -16,11 +16,10 @@ class LoginPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
-            color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.max,

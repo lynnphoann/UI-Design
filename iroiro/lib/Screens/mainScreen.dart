@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iroiro/ColorCollection.dart';
-import 'package:iroiro/Screens/loginPage.dart';
+import 'package:iroiro/Screens/AdminPage.dart';
+import 'package:iroiro/Screens/AgentPages.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController adminIDController = TextEditingController();
   int screenKey = 0;
   @override
   Widget build(BuildContext context) {
@@ -24,51 +26,77 @@ class _MainScreenState extends State<MainScreen> {
 
     void customBottomSheet(context) {
       showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(18),
+            topRight: Radius.circular(18),
+          ),
+        ),
         context: context,
         builder: (context) {
-          return Container(
-            color: loginArrowColor,
-            height: 260,
-            child: ListView.builder(
-              itemCount: selectPagesList.length,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                        setState(
-                          () {
-                            screenKey = index;
-                            print(screenKey);
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Center(
+                  child: SizedBox(
+                height: 30,
+                width: 70,
+                child: Divider(
+                  color: Colors.grey,
+                  height: 8,
+                  indent: 10,
+                  endIndent: 10,
+                  thickness: 2,
+                ),
+              )),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                // color: loginArrowColor,
+                height: 260,
+                child: ListView.builder(
+                  itemCount: selectPagesList.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                            setState(
+                              () {
+                                screenKey = index;
+                              },
+                            );
                           },
-                        );
-                      },
-                      child: Container(
-                        color: btnColor,
-                        height: 60,
-                        width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: Text(
-                            "${selectPagesList[index]}",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              letterSpacing: 1,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: btnColor,
                             ),
-                            textAlign: TextAlign.center,
+                            height: 60,
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 15),
+                              child: Text(
+                                "${selectPagesList[index]}",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  color: textFiedlIconColor,
+                                  letterSpacing: 1,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    )
-                  ],
-                );
-              },
-            ),
+                        const SizedBox(
+                          height: 5,
+                        )
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         },
       );
@@ -76,15 +104,30 @@ class _MainScreenState extends State<MainScreen> {
 
     Widget selectPage(int screenKey) {
       if (screenKey == 0) {
-        return LoginPage(
+        return AdminPage(
             nameController: nameController,
             passwordController: passwordController);
       } else if (screenKey == 1) {
-        return Center(
-          child: Text("hehe"),
+        return AgentPages(
+            agentPageTitle: "To SuperAgent Login",
+            nameController: nameController,
+            passwordController: passwordController,
+            adminIDController: adminIDController);
+      } else if (screenKey == 2) {
+        return AgentPages(
+          agentPageTitle: "To Agent",
+          nameController: nameController,
+          passwordController: passwordController,
+          adminIDController: adminIDController,
         );
+      } else if (screenKey == 3) {
+        return AgentPages(
+            agentPageTitle: "To Member",
+            nameController: nameController,
+            passwordController: passwordController,
+            adminIDController: adminIDController);
       } else {
-        return LoginPage(
+        return AdminPage(
             nameController: nameController,
             passwordController: passwordController);
       }
@@ -93,9 +136,11 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: selectPage(screenKey),
       bottomNavigationBar: GestureDetector(
-        onTap: () {
-          print("this is bottomBarTap");
-        },
+        onTap: () => AgentPages(
+            agentPageTitle: "To SuperAgent Login",
+            nameController: nameController,
+            passwordController: passwordController,
+            adminIDController: adminIDController),
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 20),
